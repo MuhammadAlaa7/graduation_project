@@ -13,8 +13,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
     Future getImage() async {
-      XFile? pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
-      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Results(choosedImage: pickedImage,)));
+      XFile? pickedImage = await ImagePicker().pickImage(source: ImageSource.camera);
+      var imageFile = pickedImage!.path;
+      print(imageFile);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Results(choosedImage: imageFile,)),
+      );
     }
   @override
   Widget build(BuildContext context) {

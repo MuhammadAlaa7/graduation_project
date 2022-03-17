@@ -1,16 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Results extends StatefulWidget {
-  final XFile? choosedImage;
+  final String? choosedImage;
   const Results({Key? key, this.choosedImage}) : super(key: key);
   @override
   _ResultsState createState() => _ResultsState();
 }
 
 class _ResultsState extends State<Results> {
-  String get choosedImage => const Results().choosedImage!.path;
-
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -34,7 +34,10 @@ class _ResultsState extends State<Results> {
          Row(
            mainAxisAlignment: MainAxisAlignment.center,
            children: [
-            Image.asset(choosedImage)
+           SizedBox(
+             width: 300,
+             child:  Image.file(File(widget.choosedImage!),fit: BoxFit.fill,),
+           )
            ],
          )
         ],),
